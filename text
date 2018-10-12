@@ -1,0 +1,16 @@
+X["cylinders"] = X["cylinders"].astype('category')
+    X["cylinders"] = X["cylinders"].cat.codes
+    X["displacement"] = X["displacement"].astype('category')
+    X["displacement"] = X["displacement"].cat.codes
+    X["horsepower"] = X["horsepower"].astype('category')
+    X["horsepower"] = X["horsepower"].cat.codes
+    X["weight"] = X["weight"].astype('category')
+    X["weight"] = X["weight"].cat.codes
+    X["acceleration"] = X["acceleration"].astype('category')
+    X["acceleration"] = X["acceleration"].cat.codes
+    X["model_year"] = X["model_year"].astype('category')
+    X["model_year"] = X["model_year"].cat.codes
+    X["origin"] = X["origin"].astype('category')
+    X["origin"] = X["origin"].cat.codes
+    X["car_name"] = X["car_name"].astype('category')
+    X["car_name"] = X["car_name"].cat.codes
