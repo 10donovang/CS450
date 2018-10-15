@@ -131,11 +131,11 @@ def main():
 
 #    my_classifier.results(targets_test)
 
-    classifier = KNeighborsClassifier(n_neighbors=11)
+    classifier = KNeighborsClassifier(n_neighbors=1)
     model = classifier.fit(data_train, targets_train)
     predictions = model.predict(data_test)
 
-    my_classifier = knn(11)
+    my_classifier = knn(30)
     my_classifier.fit(data_train, targets_train)
     my_predictions = my_classifier.predict(data_test)
 

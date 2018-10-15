@@ -1,0 +1,34 @@
+When your assignment is complete, please answer the questions in this text file and upload it to I-Learn.
+
+1. Please provide the URL of your public GitHub repository.
+https://github.com/10donovang/CS450/knn.py
+
+2. Briefly describe your overall approach to the task and highlight the most difficult part of this assignment.
+So based off the size of the data I ran it through a for loop and ran a function that made a prediction for each
+piece of data based off the location of the data in the data_train. I put these altogether in a list of predictions
+and this gave me all of my predictions for the data set. (It has been a while and I obviously need to make better notes
+in my code)
+
+3. Briefly describe your process for handling numeric data on different scales (i.e., normalizing).
+I changed all of the data to ints by using np empty I believe. 
+
+4. Describe your results for the Iris data set. (For example, what level of accuracy did you see for different values of K? It was wierd to me. The random seed of the test-train-split seemed to have more impact than the number of neighbors. I did notice the larger I got, the more varied the results would be and if it got too high, like over 50 that it would become wildly inaccurate
+
+
+5. How did your implementation compare to existing implementations? identical if they have the same number of neighbors.
+
+
+6. Describe anything you did to go above and beyond the minimum standard requirements.
+
+
+7. Please select the category you feel best describes your assignment:
+A - Some attempt was made
+B - Developing, but significantly deficient
+C - Slightly deficient, but still mostly adequate
+D - Meets requirements
+E - Shows creativity and excels above and beyond requirements
+
+D.
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+It does accomplished all of the requirements. 
