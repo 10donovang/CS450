@@ -4,6 +4,8 @@ from pprint import pprint
 #from sklearn.model_selection import train_test_split
 import scipy as sp
 import random
+from sklearn import tree
+import graphviz
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -88,11 +90,8 @@ def train_test_split(dataset):
 
 
 def test(data, tree):
-    # Create new query instances by simply removing the target feature column from the original dataset and
-    # convert it to a dictionary
     queries = data.iloc[:, :-1].to_dict(orient="records")
 
-    # Create a empty DataFrame in whose columns the prediction of the tree are stored
     predicted = pd.DataFrame(columns=["predicted"])
 
     # Calculate the prediction accuracy
@@ -102,15 +101,25 @@ def test(data, tree):
 
 
 def load_data():
-    seed = random.randint(0, 999)
     dataset = pd.read_csv('chess.txt',
                           names=['White_King_file', 'White_King_rank', 'White_Rook_file', 'White_Rook_rank',
                                  'Black_King_file',
                                  'Black_King_rank', 'Turns_to_win', ])
-    #inputs = dataset.loc[:, dataset.columns != 'Turns_to_win']
-    #outputs = dataset.Turns_to_win
     dataset = dataset.drop('Turns_to_win', axis=1)
-    subs = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7}
+    subs = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h':8}
+    dataset.White_King_file = [subs.get(item, item) for item in dataset.White_King_file]
+    dataset.Black_King_file = [subs.get(item, item) for item in dataset.Black_King_file]
+    dataset.White_Rook_file = [subs.get(item, item) for item in dataset.White_Rook_file]
+    data_train, data_test = train_test_split(dataset)
+    return data_train, data_test
+
+
+def load_data_sk():
+    dataset = pd.read_csv('chess.txt',
+                          names=['White_King_file', 'White_King_rank', 'White_Rook_file', 'White_Rook_rank',
+                                 'Black_King_file',
+                                 'Black_King_rank', 'Turns_to_win', ])
+    subs = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8}
     dataset.White_King_file = [subs.get(item, item) for item in dataset.White_King_file]
     dataset.Black_King_file = [subs.get(item, item) for item in dataset.Black_King_file]
     dataset.White_Rook_file = [subs.get(item, item) for item in dataset.White_Rook_file]
@@ -122,9 +131,26 @@ data_train, data_test = load_data()
 
 
 def main():
-    tree = ID3(data_train, data_train, data_train.columns[:-1])
-    pprint(tree)
-    test(data_train, tree)
+    my_tree = ID3(data_train, data_train, data_train.columns[:-1])
+    pprint(my_tree)
+    test(data_train, my_tree)
+    train, testD = load_data_sk()
+    turns = train.Turns_to_win
+    data = train.loc[:, train.columns != 'Turns_to_win']
+    clf = tree.DecisionTreeClassifier()
+    clf = clf.fit(data, turns)
+    dot_data = tree.export_graphviz(clf, out_file=None)
+    graph = graphviz.Source(dot_data)
+    graph.render("Chess")
+    dot_data = tree.export_graphviz(clf, out_file=None,
+                         feature_names=['White_King_file', 'White_King_rank', 'White_Rook_file', 'White_Rook_rank',
+                                 'Black_King_file',
+                                 'Black_King_rank'],
+                         class_names='Turns_to_win',
+                         filled=True, rounded=True,
+                         special_characters=True)
+    graph = graphviz.Source(dot_data)
+    graph
 
 
 if __name__ == "__main__":

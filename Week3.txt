@@ -1,0 +1,37 @@
+When your assignment is complete, please answer the questions in this text file and upload it to I-Learn.
+
+1. Please provide the URL of your public GitHub repository.
+https://github.com/10donovang/CS450/advancedknn.py
+
+2. What was the most difficult part of this assignment?
+Fixing the data type. I did not figure it out for this assignment. 
+
+3. Briefly describe your process for handling non-numeric data.
+I initally was trying to change them all to ints, which did not work for this assignment for me. 
+
+4. Briefly describe your process for missing data.
+I was going to either fill it with 0s or remove the rows that they exist. 
+
+5. Describe your results for the Car Evaluation dataset.
+Did not get it working
+
+6. Describe your results for the Pima Indian dataset.
+Did not get it working
+
+7. Describe your results for the Automobile MPG dataset.
+Did not get it working
+
+8. Describe anything you did to go above and beyond the minimum standard requirements.
+Nothing. 
+
+9. Please select the category you feel best describes your assignment:
+A - Some attempt was made
+B - Developing, but significantly deficient
+C - Slightly deficient, but still mostly adequate
+D - Meets requirements
+E - Shows creativity and excels above and beyond requirements
+
+B
+
+10. Provide a brief justification (1-2 sentences) for selecting that category.
+I felt that I was really close but it never actually worked. 
