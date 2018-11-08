@@ -1,32 +1,16 @@
-# load and prepare data
-filename = 'letters.csv'
-dataset = load_csv(filename)
-letter_array = []
-for row in range(len(dataset)):
-    letter_array.append(dataset[row][0])
-    dataset[row].pop(0)
-letterDict = setup_letters(letter_array)
-for row in range(len(dataset)):
-    dataset[row].append(letterDict[letter_array[row]])
-for i in range(len(dataset[0]) - 1):
-    str_column_to_float(dataset, i)
-# convert class column to integers
-str_column_to_int(dataset, len(dataset[0]) - 1)
-# normalize input variables
-minmax = dataset_minmax(dataset)
-normalize_dataset(dataset, minmax)
-# evaluate algorithm
-n_folds = 5
-l_rate = 0.3
-n_epoch = 500
-n_hidden = 5
-scores = evaluate_algorithm(dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
-print('Scores: %s' % scores)
-print('Mean Accuracy: %.3f%%' % (sum(scores) / float(len(scores))))
-plt.plot(scores)
-plt.title('model accuracy chart 1')
-plt.ylabel('accuracy')
-plt.xlabel('fold')
-plt.legend(['train', 'test'], loc='upper left')
-plt.show()
-
+X["cylinders"] = X["cylinders"].astype('category')
+    X["cylinders"] = X["cylinders"].cat.codes
+    X["displacement"] = X["displacement"].astype('category')
+    X["displacement"] = X["displacement"].cat.codes
+    X["horsepower"] = X["horsepower"].astype('category')
+    X["horsepower"] = X["horsepower"].cat.codes
+    X["weight"] = X["weight"].astype('category')
+    X["weight"] = X["weight"].cat.codes
+    X["acceleration"] = X["acceleration"].astype('category')
+    X["acceleration"] = X["acceleration"].cat.codes
+    X["model_year"] = X["model_year"].astype('category')
+    X["model_year"] = X["model_year"].cat.codes
+    X["origin"] = X["origin"].astype('category')
+    X["origin"] = X["origin"].cat.codes
+    X["car_name"] = X["car_name"].astype('category')
+    X["car_name"] = X["car_name"].cat.codes
