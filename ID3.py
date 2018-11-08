@@ -139,9 +139,6 @@ def main():
     data = train.loc[:, train.columns != 'Turns_to_win']
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(data, turns)
-    dot_data = tree.export_graphviz(clf, out_file=None)
-    graph = graphviz.Source(dot_data)
-    graph.render("Chess")
     dot_data = tree.export_graphviz(clf, out_file=None,
                          feature_names=['White_King_file', 'White_King_rank', 'White_Rook_file', 'White_Rook_rank',
                                  'Black_King_file',
@@ -150,7 +147,7 @@ def main():
                          filled=True, rounded=True,
                          special_characters=True)
     graph = graphviz.Source(dot_data)
-    graph
+    graph.render("Chess")
 
 
 if __name__ == "__main__":
